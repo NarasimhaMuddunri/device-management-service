@@ -1,5 +1,5 @@
 # Start with a base image containing Java runtime
-FROM java:11-jdk-alpine
+FROM openjdk:11
 # Add a volume pointing to /tmp
 VOLUME /tmp
 # The application's jar file
