@@ -15,6 +15,8 @@
 	<description>Device Management Service</description>
 	<properties>
 		<java.version>11</java.version>
+		<dockerfile-maven-version>1.4.8</dockerfile-maven-version>
+		<jar>${project.build.directory}/${project.build.finalName}.jar</jar>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -44,6 +46,31 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- This plugin is used to create a docker image and publish the image 
+				to docker hub -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>${dockerfile-maven-version}</version>
+
+				<configuration>
+					<repository>narasimhamuddunuri/${project.name}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
 		</plugins>
 	</build>
 
