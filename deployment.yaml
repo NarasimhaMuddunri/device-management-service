@@ -16,7 +16,7 @@ spec:
     spec:                     # Spec for the containers that will be run in the Pods
       containers:
       - name: device-management-service
-        image: narasimhamuddunuri/device-management-service:0.0.1-SNAPSHOT
+        image: narasimhamuddunuri/device-management-service:0.0.2-SNAPSHOT
         imagePullPolicy: IfNotPresent
         ports:
           - name: http
